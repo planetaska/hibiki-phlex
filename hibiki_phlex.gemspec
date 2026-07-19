@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
     to get fresh HTML on every signal change — transport-agnostic, the
     block decides where the HTML goes.
   DESC
-  spec.homepage = "https://github.com/planetaska/hibiki"
+  spec.homepage = "https://github.com/planetaska/hibiki-phlex"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.4"
 
