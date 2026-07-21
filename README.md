@@ -1,25 +1,16 @@
 # hibiki_phlex
 
 Phlex glue for [hibiki](https://github.com/planetaska/hibiki): reactive
-components. A Phlex component is a plain Ruby object, so
-`Hibiki::Reactive` gives it per-instance signals read as ordinary method
-calls — no `.value` anywhere in `view_template` — and a **render effect**
-re-renders it whenever one of those signals changes.
+components. A Phlex component is a plain Ruby object, so `Hibiki::Reactive` gives it per-instance signals read as ordinary method calls — no `.value` anywhere in `view_template` — and a **render effect** re-renders it whenever one of those signals changes.
 
 ```
 signal write → render effect re-runs → component re-renders
 (same instance) → fresh HTML handed to your block
 ```
 
-Transport-agnostic on purpose: the gem depends only on hibiki and phlex.
-The block receiving the HTML decides where it goes — broadcast it over
-Turbo Streams (see [hibiki_rails](../hibiki_rails)), write it to a file,
-diff it in a test.
+Transport-agnostic on purpose: the gem depends only on hibiki and phlex. The block receiving the HTML decides where it goes — broadcast it over Turbo Streams (see [hibiki_rails](../hibiki_rails)), write it to a file, diff it in a test.
 
-Incubating inside the hibiki repo while the core gem is pre-release; will
-be extracted to its own repository once hibiki 0.1.0 ships and this API
-stabilizes. Phlex >= 2.4, < 2.5 (see the version-pin rationale below),
-Ruby >= 3.4.
+Phlex >= 2.4, < 2.5 (see the version-pin rationale below), Ruby >= 3.4.
 
 ## Usage
 
@@ -97,15 +88,10 @@ README.
 
 ## Why the strict Phlex pin
 
-Phlex components are one-shot: an instance renders once, and a second
-`call` raises `Phlex::DoubleRenderError`. Phlex 2 tracks "spent" purely
-through the private `@_state` ivar — everything else about a render is
-per-call — so `Rerenderable#rerender` clears it and calls again. That is
-the entire adapter, but it leans on a private implementation detail, so:
+Phlex components are one-shot: an instance renders once, and a second `call` raises `Phlex::DoubleRenderError`. Phlex 2 tracks "spent" purely through the private `@_state` ivar — everything else about a render is per-call — so `Rerenderable#rerender` clears it and calls again. That is the entire adapter, but it leans on a private implementation detail, so:
 
 - the gemspec allows only verified Phlex minors (`>= 2.4, < 2.5`), and
-- `spec/phlex_contract_spec.rb` pins the upstream contract itself, so
-  bumping the bound fails loudly in CI if the internals moved.
+- `spec/phlex_contract_spec.rb` pins the upstream contract itself, so bumping the bound fails loudly in CI if the internals moved.
 
 ## Development
 
@@ -113,5 +99,4 @@ the entire adapter, but it leans on a private implementation detail, so:
 bundle exec rake   # specs + rubocop (same as CI)
 ```
 
-Plain RSpec — no Rails; the live end-to-end proof app is `spike/` in the
-parent repo (the `/phlex` page).
+Plain RSpec — no Rails.
