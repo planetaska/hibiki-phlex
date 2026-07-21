@@ -8,9 +8,18 @@ signal write → render effect re-runs → component re-renders
 (same instance) → fresh HTML handed to your block
 ```
 
-Transport-agnostic on purpose: the gem depends only on hibiki and phlex. The block receiving the HTML decides where it goes — broadcast it over Turbo Streams (see [hibiki_rails](../hibiki_rails)), write it to a file, diff it in a test.
+Transport-agnostic on purpose: the gem depends only on hibiki and phlex. The block receiving the HTML decides where it goes — broadcast it over Turbo Streams (see [hibiki_rails](https://github.com/planetaska/hibiki-rails)), write it to a file, diff it in a test.
 
 Phlex >= 2.4, < 2.5 (see the version-pin rationale below), Ruby >= 3.4.
+
+## Installation
+
+```ruby
+# Gemfile
+gem "hibiki_phlex"
+```
+
+Or `gem install hibiki_phlex`.
 
 ## Usage
 
@@ -83,8 +92,8 @@ Granularity is inherent and worth knowing: the ERB style in hibiki_rails
 is one effect **per partial** (fine-grained), a Phlex render effect is one
 effect **per component** (component-grained). Both are correct; pick per
 page. The initial-state pattern (server-rendered placeholder + subscribe
-after the Turbo stream confirms) is transport-side — see the hibiki_rails
-README.
+after the Turbo stream confirms) is transport-side — see the
+[Rails usage guide](https://planetaska.github.io/hibiki/rails-usage/).
 
 ## Why the strict Phlex pin
 
@@ -92,6 +101,10 @@ Phlex components are one-shot: an instance renders once, and a second `call` rai
 
 - the gemspec allows only verified Phlex minors (`>= 2.4, < 2.5`), and
 - `spec/phlex_contract_spec.rb` pins the upstream contract itself, so bumping the bound fails loudly in CI if the internals moved.
+
+## Documentation
+
+Documentation site: <https://planetaska.github.io/hibiki/phlex-support/>
 
 ## Development
 
