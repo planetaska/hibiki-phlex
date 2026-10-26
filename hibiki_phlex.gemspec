@@ -17,14 +17,14 @@ Gem::Specification.new do |spec|
     block decides where the HTML goes.
   DESC
   spec.homepage = "https://github.com/planetaska/hibiki-phlex"
-  spec.license = "MIT"
+  spec.licenses = ["MIT", "Apache-2.0"]
   spec.required_ruby_version = ">= 3.4"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = spec.homepage
   spec.metadata["rubygems_mfa_required"] = "true"
 
-  spec.files = Dir["lib/**/*.rb", "README.md"]
+  spec.files = Dir["lib/**/*.rb", "README.md", "LICENSE-*.txt"]
   spec.require_paths = ["lib"]
 
   spec.add_dependency "hibiki", "~> 0.1"

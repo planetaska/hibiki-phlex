@@ -113,3 +113,13 @@ bundle exec rake   # specs + rubocop (same as CI)
 ```
 
 Plain RSpec — no Rails.
+
+## Contributing
+
+Bug reports and pull requests are welcome at <https://github.com/planetaska/hibiki-phlex>. Please keep `bundle exec rake` green, and add a regression spec for any bug fix.
+
+By opening a pull request, you agree that your contribution is released under the same two licenses as the rest of hibiki_phlex (see below). You keep the copyright on what you write, and the licenses let anyone use it, exactly as they use the rest of the code.
+
+## License
+
+hibiki_phlex is licensed under either [MIT](LICENSE-MIT.txt) or [Apache 2.0](LICENSE-APACHE.txt), at your option. MIT covers most uses. Apache 2.0 is added for organizations that need it.
